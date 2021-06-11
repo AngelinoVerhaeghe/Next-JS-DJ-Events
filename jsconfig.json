@@ -1,0 +1,11 @@
+/* Replaces the ../../ in our imports folders */
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/styles/*": ["styles/*"]
+    }
+  }
+}
