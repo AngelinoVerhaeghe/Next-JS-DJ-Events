@@ -26,7 +26,7 @@ function EventPage({ event }) {
           </a>
         </div>
         <span className="text-sm text-gray-600">
-          {event.date} and {event.time}
+          {new Date(event.date).toLocaleDateString("nl-BE")} and {event.time}
         </span>
 
         <h1 className="text-2xl font-bold">{event.name}</h1>
@@ -34,7 +34,11 @@ function EventPage({ event }) {
         {/* Look if the image exists */}
         {event.image && (
           <div>
-            <Image src={event.image} width={960} height={600} />
+            <Image
+              src={event.image.formats.medium.url}
+              width={960}
+              height={600}
+            />
           </div>
         )}
 
@@ -71,7 +75,7 @@ export default EventPage;
 
 export async function getStaticPaths() {
   /* Get All Data */
-  const response = await fetch(`${API_URL}/api/events`);
+  const response = await fetch(`${API_URL}/events`);
   const events = await response.json();
 
   const paths = events.map((event) => ({
@@ -85,7 +89,7 @@ export async function getStaticPaths() {
 
 /* Get properties at build time */
 export async function getStaticProps({ params: { slug } }) {
-  const response = await fetch(`${API_URL}/api/events/${slug}`);
+  const response = await fetch(`${API_URL}/events?slug=${slug}`);
   const events = await response.json();
   return {
     props: {

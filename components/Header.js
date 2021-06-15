@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Search from "./Search";
 
 function Header() {
   return (
@@ -11,6 +12,9 @@ function Header() {
             </a>
           </Link>
         </div>
+
+        <Search />
+
         <nav>
           <ul>
             <li>

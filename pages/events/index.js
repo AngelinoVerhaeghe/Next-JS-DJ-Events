@@ -22,7 +22,7 @@ export default EventsPage;
 export async function getStaticProps() {
   /* Make contact with api route */
 
-  const response = await fetch(`${API_URL}/api/events`);
+  const response = await fetch(`${API_URL}/events?_sort=date:ASC`);
   const events = await response.json();
 
   return {

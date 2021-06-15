@@ -34,12 +34,12 @@ export default HomePage;
 export async function getStaticProps() {
   /* Make contact with api route */
 
-  const response = await fetch(`${API_URL}/api/events`);
+  const response = await fetch(`${API_URL}/events?_sort=date:ASC&_limit=3`);
   const events = await response.json();
 
   return {
     /* Show only 3 events on homepage with slice() */
-    props: { events: events.slice(0, 3) },
+    props: { events },
     revalidate: 1,
   };
 }
