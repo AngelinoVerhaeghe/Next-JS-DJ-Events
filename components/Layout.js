@@ -18,7 +18,10 @@ function Layout({ title, keywords, description, children }) {
       <Header />
       {/* Use router.pathname to set only on homepage */}
       {router.pathname === "/" && <Showcase />}
-      <div className="container mx-auto mt-10 mb-20">{children}</div>
+      <div className="bg-gray-400">
+        <div className="container mx-auto pt-10 pb-20">{children}</div>
+      </div>
+
       <Footer />
     </div>
   );

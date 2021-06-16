@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function EventItem({ event }) {
   return (
-    <div className="bg-white flex items-center justify-between shadow-xl my-5 p-6">
+    <div className="bg-white flex items-center justify-between shadow-xl my-5 p-6 rounded-lg">
       <div className="flex items-center">
         <Image
           src={

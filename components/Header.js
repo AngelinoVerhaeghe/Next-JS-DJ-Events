@@ -3,7 +3,7 @@ import Search from "./Search";
 
 function Header() {
   return (
-    <header className="py-6 text-gray-700 font-medium shadow-md">
+    <header className="py-6 text-gray-700 font-medium shadow-lg border-b-2 border-indigo-500">
       <div className="flex items-center container justify-between mx-auto bg-white">
         <div>
           <Link href="/">

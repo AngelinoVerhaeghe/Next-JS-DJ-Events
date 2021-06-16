@@ -3,10 +3,29 @@ import { API_URL } from "@/config/index";
 import Image from "next/image";
 import Link from "next/link";
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 function EventPage({ event }) {
-  const deleteEvent = (element) => {
-    console.log("delete");
+  const router = useRouter();
+  const deleteEvent = async (element) => {
+    /* Make request to delete event */
+    if (confirm("Are you sure?")) {
+      /* Adding option because its a delete  ,{ method: "DELETE" }*/
+      const response = await fetch(`${API_URL}/events/${event.id}`, {
+        method: "DELETE",
+      });
+
+      const data = response.json();
+
+      /* Check if delete is ok */
+      if (!response.ok) {
+        toast.error(data.message);
+      } else {
+        router.push("/events");
+      }
+    }
   };
   return (
     <Layout>
@@ -30,7 +49,7 @@ function EventPage({ event }) {
         </span>
 
         <h1 className="text-2xl font-bold">{event.name}</h1>
-
+        <ToastContainer />
         {/* Look if the image exists */}
         {event.image && (
           <div>
