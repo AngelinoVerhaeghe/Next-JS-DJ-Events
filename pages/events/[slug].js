@@ -26,7 +26,7 @@ function EventPage({ event }) {
           </a>
         </div>
         <span className="text-sm text-gray-600">
-          {new Date(event.date).toLocaleDateString("nl-BE")} and {event.time}
+          {new Date(event.date).toLocaleDateString("en-US")} at {event.time}
         </span>
 
         <h1 className="text-2xl font-bold">{event.name}</h1>

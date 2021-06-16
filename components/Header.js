@@ -16,10 +16,15 @@ function Header() {
         <Search />
 
         <nav>
-          <ul>
+          <ul className="flex items-center space-x-4">
             <li>
               <Link href="/events">
                 <a>Events</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/events/add">
+                <a>Add Event</a>
               </Link>
             </li>
           </ul>

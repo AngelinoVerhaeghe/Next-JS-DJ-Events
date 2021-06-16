@@ -17,7 +17,7 @@ function EventItem({ event }) {
       </div>
       <div>
         <span className="text-sm text-gray-400">
-          {new Date(event.date).toLocaleDateString("nl-BE")} at {event.time}
+          {new Date(event.date).toLocaleDateString("en-US")} at {event.time}
         </span>
         <h3 className="font-bold">{event.name}</h3>
       </div>
