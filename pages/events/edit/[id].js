@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/Layout";
+import Modal from "@/components/Modal";
 /* Post request add API_URL */
 import { API_URL } from "@/config/index";
 
@@ -31,6 +32,9 @@ export default function EditEventPage({ event }) {
   const [imagePreview, setImagePreview] = useState(
     event.image ? event.image.formats.thumbnail.url : null
   );
+
+  /* Set a state for Modal to false = not showing */
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -191,9 +195,11 @@ export default function EditEventPage({ event }) {
 
       <div className="pt-4">
         {/* Import react-icons */}
+        {/* Set onClick to show Modal */}
         <button
+          onClick={() => setShowModal(true)}
           type="button"
-          className="py-2 px-4 flex items-center bg-indigo-600 rounded-lg text-white font-medium hover:bg-indigo-800 transition duration-200 ease-in-out"
+          className="py-2 px-4 flex items-center bg-indigo-600 rounded-lg text-white font-medium focus:outline-none focus:ring focus:ring-indigo-400 hover:bg-indigo-800 transition duration-200 ease-in-out"
         >
           <FaImage className="mr-2" /> Set Image
         </button>
@@ -206,6 +212,12 @@ export default function EditEventPage({ event }) {
           </a>
         </Link>
       </div>
+
+      {/* Here component Modal with ending tag to show {children inside} */}
+      {/*  Set some props to the modal tag */}
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        Image upload
+      </Modal>
     </Layout>
   );
 }

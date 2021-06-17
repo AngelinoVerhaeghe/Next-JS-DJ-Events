@@ -3,31 +3,36 @@ import Image from "next/image";
 
 function EventItem({ event }) {
   return (
-    <div className="bg-white flex items-center justify-between shadow-xl my-5 p-6 rounded-lg">
-      <div className="flex items-center">
+    <div className="mx-3 text-center pb-8">
+      <div className="bg-white rounded-xl shadow-2xl">
         <Image
+          className="rounded-t-xl"
           src={
             event.image
-              ? event.image.formats.thumbnail.url
+              ? event.image.formats.medium.url
               : "/images/event-default.png"
           }
-          width={170}
-          height={100}
+          width={750}
+          height={500}
+          layout="responsive"
+          objectFit
         />
-      </div>
-      <div>
-        <span className="text-sm text-gray-400">
-          {new Date(event.date).toLocaleDateString("en-US")} at {event.time}
-        </span>
-        <h3 className="font-bold">{event.name}</h3>
-      </div>
+        <div className="p-6">
+          <div className="space-y-3">
+            <span className="text-sm text-gray-700 font-base">
+              {new Date(event.date).toLocaleDateString("en-US")} at {event.time}
+            </span>
+            <h3 className="text-md text-gray-900 font-bold">{event.name}</h3>
+          </div>
 
-      <div>
-        <Link href={`/events/${event.slug}`}>
-          <a className="py-2 px-4 bg-indigo-500 rounded-lg text-white font-medium hover:bg-indigo-700 transition duration-200 ease-in-out">
-            Details
-          </a>
-        </Link>
+          <div className="pt-5">
+            <Link href={`/events/${event.slug}`}>
+              <a className="py-2 px-5 block bg-indigo-500 rounded-lg text-white font-medium hover:bg-indigo-700 focus:outline-none focus:ring ring-indigo-400 ring-offset-2 transition duration-200 ease-in-out">
+                Details
+              </a>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

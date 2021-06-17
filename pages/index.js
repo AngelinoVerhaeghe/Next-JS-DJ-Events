@@ -6,7 +6,9 @@ import Link from "next/link";
 function HomePage({ events }) {
   return (
     <Layout>
-      <h1 className="font-bold text-3xl py-6">Upcoming Events</h1>
+      <h1 className="font-bold text-3xl pt-6 pb-8 text-white text-center">
+        Upcoming Events
+      </h1>
       {/* Show no events to page if length === 0 */}
       {events.length === 0 && <h3>No events to show</h3>}
 
@@ -17,9 +19,9 @@ function HomePage({ events }) {
 
       {/* Button to go all events */}
       {events.length > 0 && (
-        <div className="mt-10">
+        <div className="flex justify-center">
           <Link href="/events">
-            <a className="py-2 px-4 bg-gray-600 rounded-lg text-white font-medium hover:bg-gray-800 transition duration-200 ease-in-out">
+            <a className="py-2 px-6 bg-gray-600 rounded-lg text-white font-medium hover:bg-gray-800 focus:outline-none focus:ring ring-gray-400 transition duration-200 ease-in-out">
               View All Events
             </a>
           </Link>
