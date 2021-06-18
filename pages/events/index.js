@@ -1,10 +1,11 @@
 import Layout from "@/components/Layout";
 import EventItem from "@/components/EventItem";
-import { API_URL } from "@/config/index";
+import { API_URL, PER_PAGE } from "@/config/index";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import Pagination from "@/components/Pagination";
 
-function EventsPage({ events }) {
+function EventsPage({ events, page, total }) {
   return (
     <Layout>
       <IconContext.Provider value={{ className: "h-6 w-6" }}>
@@ -20,22 +21,34 @@ function EventsPage({ events }) {
       {events.map((event) => (
         <EventItem key={event.id} event={event} />
       ))}
+
+      <Pagination page={page} total={total} />
     </Layout>
   );
 }
 
 export default EventsPage;
 
-export async function getStaticProps() {
-  /* Make contact with api route */
+export async function getServerSideProps({ query: { page = 1 } }) {
+  /* Calculate start page */
+  const start = +page === 1 ? 0 : (+page - 1) * PER_PAGE;
 
-  const response = await fetch(`${API_URL}/events?_sort=date:ASC`);
-  const events = await response.json();
+  /* Fetch Total/Count */
+  const totalResponse = await fetch(`${API_URL}/events/count`);
+  const total = await totalResponse.json();
+
+  /* Make contact with api route */
+  /* Fetch Events */
+  const eventResponse = await fetch(
+    `${API_URL}/events?_sort=date:ASC&_limit=${PER_PAGE}&_start=${start}`
+  );
+  const events = await eventResponse.json();
 
   return {
     props: {
       events,
+      page: +page,
+      total,
     },
-    revalidate: 1,
   };
 }
