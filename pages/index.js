@@ -6,7 +6,7 @@ import Link from "next/link";
 function HomePage({ events }) {
   return (
     <Layout>
-      <h1 className="font-bold text-3xl pt-6 pb-8 text-white text-center">
+      <h1 className="font-bold text-3xl pt-6 pb-8 text-gray-800 text-center">
         Upcoming Events
       </h1>
       {/* Show no events to page if length === 0 */}

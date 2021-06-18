@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function EventItem({ event }) {
   return (
-    <div className="mx-3 text-center pb-8">
+    <div className="text-center pb-8">
       <div className="bg-white rounded-xl shadow-2xl">
         <Image
           className="rounded-t-xl"
@@ -27,7 +27,7 @@ function EventItem({ event }) {
 
           <div className="pt-5">
             <Link href={`/events/${event.slug}`}>
-              <a className="py-2 px-5 block bg-indigo-500 rounded-lg text-white font-medium hover:bg-indigo-700 focus:outline-none focus:ring ring-indigo-400 ring-offset-2 transition duration-200 ease-in-out">
+              <a className="py-2 px-4 block bg-indigo-500 rounded-lg text-white font-medium hover:bg-indigo-700 focus:outline-none focus:ring ring-indigo-400 ring-offset-2 transition duration-200 ease-in-out">
                 Details
               </a>
             </Link>

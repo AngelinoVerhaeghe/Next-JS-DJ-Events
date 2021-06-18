@@ -47,14 +47,6 @@ export default function Modal({ show, onClose, children, title }) {
             </a>
           </header>
           <main class="p-2 text-center">{children}</main>
-          <footer class="flex justify-center p-4">
-            <button
-              onClick={handleClose}
-              class="bg-red-600 font-semibold text-white p-2 w-32 rounded-lg hover:bg-red-700 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300"
-            >
-              Go back
-            </button>
-          </footer>
         </div>
       </div>
     </div>

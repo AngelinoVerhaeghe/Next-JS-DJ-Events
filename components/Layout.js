@@ -18,9 +18,8 @@ function Layout({ title, keywords, description, children }) {
       <Header />
       {/* Use router.pathname to set only on homepage */}
       {router.pathname === "/" && <Showcase />}
-      <div className="bg-gradient-to-br from-indigo-500 to-pink-500">
-        <div className="container mx-auto pt-10 pb-20">{children}</div>
-      </div>
+
+      <div className="container mx-auto pt-10 pb-20">{children}</div>
 
       <Footer />
     </div>

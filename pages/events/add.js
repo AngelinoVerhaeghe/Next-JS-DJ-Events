@@ -145,7 +145,7 @@ export default function AddEventPage() {
             />
           </div>
         </div>
-        <div className="px-2 mt-4">
+        <div className="mt-4">
           <label htmlFor="description" className="font-medium">
             Event Description
           </label>

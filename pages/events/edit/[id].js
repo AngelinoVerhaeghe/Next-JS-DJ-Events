@@ -9,6 +9,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/Layout";
 import Modal from "@/components/Modal";
+import ImageUpload from "@/components/ImageUpload";
+
 /* Post request add API_URL */
 import { API_URL } from "@/config/index";
 
@@ -73,6 +75,15 @@ export default function EditEventPage({ event }) {
     const { name, value } = e.target;
     /* Set the values [name] just overwrite the one needed*/
     setValues({ ...values, [name]: value });
+  };
+
+  const imageUploaded = async (e) => {
+    /* Get latest image */
+    const response = await fetch(`${API_URL}/events/${event.id}`);
+    const data = await response.json();
+    setImagePreview(data.image.formats.thumbnail.url);
+    /* Also close modal after submitted */
+    setShowModal(false);
   };
 
   return (
@@ -215,8 +226,13 @@ export default function EditEventPage({ event }) {
 
       {/* Here component Modal with ending tag to show {children inside} */}
       {/*  Set some props to the modal tag */}
-      <Modal show={showModal} onClose={() => setShowModal(false)}>
-        Image upload
+      <Modal
+        title="Upload Event Image"
+        show={showModal}
+        onClose={() => setShowModal(false)}
+      >
+        {/* Passing props the event ID and a function to upload a picture with the event */}
+        <ImageUpload eventId={event.id} imageUploaded={imageUploaded} />
       </Modal>
     </Layout>
   );
