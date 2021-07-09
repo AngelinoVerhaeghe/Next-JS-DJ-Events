@@ -7,6 +7,8 @@ import Link from "next/link";
 import Layout from "@/components/Layout";
 /* Post request add API_URL */
 import { API_URL } from "@/config/index";
+import { FaCalendarPlus } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 export default function AddEventPage() {
   const router = useRouter();
@@ -61,11 +63,23 @@ export default function AddEventPage() {
   };
 
   return (
-    <Layout title="Add New Event">
-      <h1 className="text-3xl font-bold pb-8">Add Event</h1>
-      <ToastContainer />
-      <form onSubmit={handleSubmit}>
-        <div className="space-y-4 px-2 md:px-0">
+    <Layout title="Dj Events | Add New Event">
+      <div className="container bg-white rounded-lg shadow-lg mx-2 sm:mx-0 lg:max-w-4xl lg:mx-auto">
+        <div className="flex items-center p-6 pb-0">
+          <IconContext.Provider value={{ className: "h-6 w-6" }}>
+            <FaCalendarPlus className="text-gray-600" />
+          </IconContext.Provider>
+          <h1 className="text-3xl text-gray-600 font-bold ml-3">
+            Create Event
+          </h1>
+        </div>
+
+        <ToastContainer />
+
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 space-y-4 md:grid-cols-2 md:gap-4 md:space-y-0 p-6"
+        >
           <div>
             <label htmlFor="name" className="font-medium">
               Event Name
@@ -144,35 +158,37 @@ export default function AddEventPage() {
               onChange={handleInputChange}
             />
           </div>
-        </div>
-        <div className="mt-4">
-          <label htmlFor="description" className="font-medium">
-            Event Description
-          </label>
-          <textarea
-            type="text"
-            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-md sm:text-sm border-gray-300"
-            id="description"
-            name="description"
-            value={values.description}
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div className="mt-8">
-          <input
-            type="submit"
-            value="Add Event"
-            className="py-2 px-4 w-full block cursor-pointer bg-indigo-500 rounded-lg text-white font-medium hover:bg-indigo-700 transition duration-200 ease-in-out"
-          />
-        </div>
-      </form>
-
-      <div className="mt-10">
-        <Link href="/events">
-          <a className="py-2 px-4 bg-gray-600 rounded-lg text-white font-medium hover:bg-gray-800 transition duration-200 ease-in-out">
-            Back
-          </a>
-        </Link>
+          <div>
+            <div>
+              <label htmlFor="description" className="font-medium">
+                Event Description
+              </label>
+              <textarea
+                type="text"
+                rows="5"
+                className="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-md sm:text-sm border-gray-300"
+                id="description"
+                name="description"
+                value={values.description}
+                onChange={handleInputChange}
+              ></textarea>
+            </div>
+            <div className="mt-8">
+              <input
+                type="submit"
+                value="Add Event"
+                className="py-2 px-4 w-full block cursor-pointer bg-indigo-500 rounded-lg text-white font-medium hover:bg-indigo-700 transition duration-200 ease-in-out focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-500"
+              />
+            </div>
+            <div className="pt-8">
+              <Link href="/events">
+                <a className="py-2 px-5 bg-gray-600 rounded-lg text-white shadow-lg font-medium hover:bg-gray-800 transition duration-200 ease-in-out focus:outline-none focus:ring focus:ring-offset-1 focus:ring-gray-600">
+                  Back
+                </a>
+              </Link>
+            </div>
+          </div>
+        </form>
       </div>
     </Layout>
   );

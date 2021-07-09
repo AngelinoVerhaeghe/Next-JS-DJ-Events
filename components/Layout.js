@@ -15,7 +15,10 @@ function Layout({ title, keywords, description, children }) {
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
       </Head>
-      <Header />
+      <div className="bg-white shadow-md">
+        <Header />
+      </div>
+
       {/* Use router.pathname to set only on homepage */}
       {router.pathname === "/" && <Showcase />}
 

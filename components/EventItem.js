@@ -4,9 +4,8 @@ import Image from "next/image";
 function EventItem({ event }) {
   return (
     <div className="text-center pb-8">
-      <div className="bg-white rounded-xl shadow-2xl">
+      <div className="bg-white rounded-xl shadow-2xl overflow-hidden relative">
         <Image
-          className="rounded-t-xl"
           src={
             event.image
               ? event.image.formats.medium.url
@@ -24,7 +23,9 @@ function EventItem({ event }) {
             </span>
             <h3 className="text-md text-gray-900 font-bold">{event.name}</h3>
           </div>
-
+          <span className="bg-indigo-300 text-xs font-bold text-indigo-700 rounded-full py-1 px-3 absolute top-4 left-4">
+            {event.venue}
+          </span>
           <div className="pt-5">
             <Link href={`/events/${event.slug}`}>
               <a className="py-2 px-4 block bg-indigo-500 rounded-lg text-white font-medium hover:bg-indigo-700 focus:outline-none focus:ring ring-indigo-400 ring-offset-2 transition duration-200 ease-in-out">
