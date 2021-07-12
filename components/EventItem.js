@@ -22,6 +22,9 @@ function EventItem({ event }) {
               {new Date(event.date).toLocaleDateString("en-US")} at {event.time}
             </span>
             <h3 className="text-md text-gray-900 font-bold">{event.name}</h3>
+            <blockquote className="text-xs text-gray-400">
+              Created by {event.user.username}
+            </blockquote>
           </div>
           <span className="bg-indigo-300 text-xs font-bold text-indigo-700 rounded-full py-1 px-3 absolute top-4 left-4">
             {event.venue}
