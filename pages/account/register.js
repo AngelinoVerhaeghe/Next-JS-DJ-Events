@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import { IconContext } from "react-icons";
+import AuthContext from "@/context/AuthContext";
 
 export default function RegisterPage() {
   /* State first only have username, email and password */
@@ -12,6 +13,9 @@ export default function RegisterPage() {
   const [email, setEmail] = useState(""); // Set State to empty
   const [password, setPassword] = useState(""); // Set State to empty
   const [passwordConfirm, setPasswordConfirm] = useState(""); // Set State to empty
+
+  /* // ! Here we need register and error if there is any from AuthContext file */
+  const { register, error } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +25,8 @@ export default function RegisterPage() {
       toast.error("Passwords do not match!");
       return;
     }
-    console.log({ username, email, password });
+    // ! register function from authcontext with username, email and password on register page
+    register({ username, email, password });
   };
 
   return (
@@ -30,7 +35,7 @@ export default function RegisterPage() {
         <h1 className="text-2xl text-gray-700 flex items-center justify-between mb-6">
           Register
           {/* IconContext.Provider for styling the icon dont forget to import IconContext to above */}
-          <IconContext.Provider value={{ size: "2rem" }}>
+          <IconContext.Provider value={{ size: "1em" }}>
             <HiUserAdd className="mr-2 text-purple-700" />
           </IconContext.Provider>
         </h1>

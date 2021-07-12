@@ -4,15 +4,20 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
+import AuthContext from "@/context/AuthContext";
 
 export default function LoginPage() {
   /* State first only have email and password */
   const [email, setEmail] = useState(""); // Set State to empty
   const [password, setPassword] = useState(""); // Set State to empty
 
+  /* // ! Here we need the login and error if there is any from AuthContext file */
+  const { login, error } = useContext(AuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password });
+    /* // ! login function from authcontext with email and password on login page */
+    login({ email, password });
   };
 
   return (
