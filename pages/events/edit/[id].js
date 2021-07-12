@@ -238,11 +238,13 @@ export default function EditEventPage({ event }) {
   );
 }
 
-/* Get that event that u want to edit */
-export async function getServerSideProps({ params: { id } }) {
+/* Get that event that u want to edit + jwt COOKIE in the req */
+export async function getServerSideProps({ params: { id }, req }) {
   /* Get response -> event.id */
   const response = await fetch(`${API_URL}/events/${id}`);
   const event = await response.json();
+
+  console.log(req.headers.cookie);
 
   /* Return prop and add it to page {event} */
   return {

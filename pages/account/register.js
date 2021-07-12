@@ -17,6 +17,8 @@ export default function RegisterPage() {
   /* // ! Here we need register and error if there is any from AuthContext file */
   const { register, error } = useContext(AuthContext);
 
+  useEffect(() => error && toast.error(error));
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
